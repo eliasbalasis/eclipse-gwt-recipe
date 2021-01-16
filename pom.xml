@@ -2,11 +2,159 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.myorganization.mybusiness</groupId>
+	<groupId>eliasbalasis</groupId>
 	<artifactId>eclipse-gwt-recipe</artifactId>
 
 	<version>0.0.1-SNAPSHOT</version>
 
 	<packaging>pom</packaging>
+
+	<properties>
+
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+
+		<version.spring-boot>2.4.1</version.spring-boot>
+		<version.spring-cloud>2020.0.0</version.spring-cloud>
+		<version.spring-boot-maven-plugin>${version.spring-boot}</version.spring-boot-maven-plugin>
+
+		<eclipse-gwt-recipe.apps.web.finalName>eclipse-gwt-recipe</eclipse-gwt-recipe.apps.web.finalName>
+	</properties>
+
+	<modules>
+		<module>modules/spring-boot</module>
+		<module>modules/gwt</module>
+	</modules>
+
+	<dependencyManagement>
+		<dependencies>
+			<!--
+			Spring Framework
+			-->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${version.spring-boot}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${version.spring-cloud}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<!--
+			Descendants
+			-->
+			<dependency>
+				<groupId>eliasbalasis</groupId>
+				<artifactId>eclipse-gwt-recipe.web.common</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>eliasbalasis</groupId>
+				<artifactId>eclipse-gwt-recipe.web.core</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>eliasbalasis</groupId>
+				<artifactId>eclipse-gwt-recipe.web.gwt.impl</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>eliasbalasis</groupId>
+				<artifactId>eclipse-gwt-recipe.gwt.client</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>eliasbalasis</groupId>
+				<artifactId>eclipse-gwt-recipe.gwt.server</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>eliasbalasis</groupId>
+				<artifactId>eclipse-gwt-recipe.web.gwt.shared</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>eliasbalasis</groupId>
+				<artifactId>eclipse-gwt-recipe.web.gwt.shared</artifactId>
+				<classifier>sources</classifier>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>eliasbalasis</groupId>
+				<artifactId>eclipse-gwt-recipe.web.gwt.client</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>eliasbalasis</groupId>
+				<artifactId>eclipse-gwt-recipe.web.gwt.client</artifactId>
+				<classifier>sources</classifier>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>eliasbalasis</groupId>
+				<artifactId>eclipse-gwt-recipe.web.gwt.server</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>eliasbalasis</groupId>
+				<artifactId>eclipse-gwt-recipe.web.gwt.eclipse.classpath</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>eliasbalasis</groupId>
+				<artifactId>eclipse-gwt-recipe.web.gwt.eclipse.classpath.ECLIPSE</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>eliasbalasis</groupId>
+				<artifactId>eclipse-gwt-recipe.web.gwt.eclipse.classpath.OTHER</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>eliasbalasis</groupId>
+				<artifactId>eclipse-gwt-recipe.web.impl</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>eliasbalasis</groupId>
+				<artifactId>eclipse-gwt-recipe.web.gwt.eclipse</artifactId>
+				<type>war</type>
+				<version>${project.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<version>${version.spring-boot-maven-plugin}</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>repackage</goal>
+								<goal>build-info</goal>
+							</goals>
+							<configuration>
+								<additionalProperties>
+									<encoding.source>UTF-8</encoding.source>
+									<encoding.reporting>UTF-8</encoding.reporting>
+									<java.source>${maven.compiler.source}</java.source>
+									<java.target>${maven.compiler.target}</java.target>
+								</additionalProperties>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 
 </project>

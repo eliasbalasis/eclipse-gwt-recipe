@@ -1,0 +1,27 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation=" http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd ">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>eliasbalasis</groupId>
+		<artifactId>eclipse-gwt-recipe.gwt</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../gwt/pom.xml</relativePath>
+	</parent>
+
+	<artifactId>eclipse-gwt-recipe.web.gwt</artifactId>
+
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>../gwt-web-shared</module>
+		<module>../gwt-web-client</module>
+		<module>../gwt-web-server</module>
+		<module>../gwt-web-impl</module>
+		<module>../gwt-web-eclipse</module>
+		<module>../gwt-web-eclipse-classpath</module>
+		<module>../gwt-web-eclipse-classpath-ECLIPSE</module>
+		<module>../gwt-web-eclipse-classpath-OTHER</module>
+	</modules>
+
+</project>
