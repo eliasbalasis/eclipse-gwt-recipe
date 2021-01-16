@@ -22,11 +22,6 @@
 			<groupId>eliasbalasis</groupId>
 			<artifactId>eclipse-gwt-recipe.web.common</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-			<scope>test</scope>
-		</dependency>
 	</dependencies>
 
 </project>

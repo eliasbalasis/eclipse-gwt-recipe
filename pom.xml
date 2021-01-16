@@ -11,10 +11,19 @@
 
 	<properties>
 
+		<!--
+		Java compiler levels for all artifacts of this solution
+		-->
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 
+		<!--
+		SpringBoot
+		-->
 		<version.spring-boot>2.4.1</version.spring-boot>
+		<!--
+		SpringCloud
+		-->
 		<version.spring-cloud>2020.0.0</version.spring-cloud>
 		<version.spring-boot-maven-plugin>${version.spring-boot}</version.spring-boot-maven-plugin>
 
@@ -29,7 +38,7 @@
 	<dependencyManagement>
 		<dependencies>
 			<!--
-			Spring Framework
+			Spring Boot
 			-->
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
@@ -38,6 +47,9 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+			<!--
+			Spring Cloud
+			-->
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>

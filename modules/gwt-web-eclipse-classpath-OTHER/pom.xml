@@ -22,6 +22,14 @@
 		<dependency>
 			<groupId>eliasbalasis</groupId>
 			<artifactId>eclipse-gwt-recipe.web.gwt.eclipse.classpath</artifactId>
+			<!--
+			REMEMBER
+			dependencies at "test" scope or <optional> are not honoured by "Google Plugin for Eclipse"
+			and must be explicitly excluded
+			Also, dependencies unfriendly to GWT must also be excluded
+			-->
+			<exclusions>
+			</exclusions>
 		</dependency>
 	</dependencies>
 

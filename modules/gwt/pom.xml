@@ -14,9 +14,28 @@
 	<packaging>pom</packaging>
 
 	<properties>
+		<!--
+		The GWT source level for all applications of this solution
+		-->
 		<properties.gwt.sourceLevel>1.8</properties.gwt.sourceLevel>
-		<version.gwt-maven-plugin>2.8.2</version.gwt-maven-plugin>
+		<!--
+		The GWT version for all applications of this solution
+		-->
+		<version.gwt>2.8.2</version.gwt>
+		<version.gwt-maven-plugin>${version.gwt}</version.gwt-maven-plugin>
 	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.google.gwt</groupId>
+				<artifactId>gwt</artifactId>
+				<version>${version.gwt}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<modules>
 		<module>../gwt-client</module>

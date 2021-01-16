@@ -16,23 +16,17 @@
 	<properties>
 		<maven.install.skip>true</maven.install.skip>
 
+		<!--
+		Define the version of Jetty components that GWT was built against
+		-->
 		<version.jetty>9.2.14.v20151106</version.jetty>
 		<version.jetty-websocket>9.2.13.v20150730</version.jetty-websocket>
 
 		<version.aspectj>1.9.6</version.aspectj>
-
-		<m2e.jpa.activation>false</m2e.jpa.activation>
 	</properties>
 
 	<dependencyManagement>
 		<dependencies>
-			<dependency>
-				<groupId>com.google.gwt</groupId>
-				<artifactId>gwt</artifactId>
-				<version>${version.gwt-maven-plugin}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
 			<dependency>
 				<groupId>com.google.gwt</groupId>
 				<artifactId>gwt-user</artifactId>
@@ -129,11 +123,6 @@
 				<artifactId>aspectjweaver</artifactId>
 				<version>${version.aspectj}</version>
 			</dependency>
-			<dependency>
-				<groupId>commons-io</groupId>
-				<artifactId>commons-io</artifactId>
-				<version>2.6</version>
-			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -146,6 +135,7 @@
 		</dependency>
 		<!--
 		CLASS-PATH FIX
+		Force use of Jetty dependencies which GWT was built against
 		-->
 		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
@@ -215,34 +205,13 @@
 			<groupId>org.eclipse.jetty.websocket</groupId>
 			<artifactId>websocket-common</artifactId>
 		</dependency>
+		<!--
+		CLASS-PATH FIX
+		This is required by Super DevMode and "Google Plugin for Eclipse"
+		-->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-core</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>net.bytebuddy</groupId>
-					<artifactId>byte-buddy</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>net.bytebuddy</groupId>
-					<artifactId>byte-buddy-agent</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-		</dependency>
-		<!--
-		Other
-		-->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
 		</dependency>
 	</dependencies>
 
@@ -299,6 +268,10 @@
 
 	<profiles>
 		<profile>
+			<!--
+			Default Maven profile
+			active by default under Eclipse
+			-->
 			<id>ECLIPSE</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
@@ -306,6 +279,9 @@
 			<dependencies>
 				<!--
 				Single CLASSPATH stream
+				This MUST be the only parent dependency inheritance path.
+				Only the effective set of dependencies becomes part of WEB-INF/lib
+				the others remain in the parent classpath, still accessible by Jetty.
 				-->
 				<dependency>
 					<groupId>eliasbalasis</groupId>
@@ -313,68 +289,24 @@
 					<exclusions>
 						<!--
 						CLASS-PATH FIX
+						Exclude here all dependencies that fail to be checked by Jetty at runtime,
+						or exclude them in parent.
+						The dependencies will remain in the classpath but won't be copied to WEB-INF/lib
 						-->
 						<exclusion>
-							<groupId>net.bytebuddy</groupId>
-							<artifactId>byte-buddy</artifactId>
-						</exclusion>
-						<exclusion>
-							<groupId>com.fasterxml</groupId>
-							<artifactId>classmate</artifactId>
-						</exclusion>
-						<exclusion>
-							<groupId>com.sun.istack</groupId>
-							<artifactId>istack-commons-runtime</artifactId>
-						</exclusion>
-						<exclusion>
-							<groupId>com.fasterxml.jackson.core</groupId>
-							<artifactId>jackson-annotations</artifactId>
-						</exclusion>
-						<exclusion>
-							<groupId>com.fasterxml.jackson.core</groupId>
-							<artifactId>jackson-core</artifactId>
-						</exclusion>
-						<exclusion>
-							<groupId>com.fasterxml.jackson.datatype</groupId>
-							<artifactId>jackson-datatype-joda</artifactId>
-						</exclusion>
-						<exclusion>
-							<groupId>com.sun.activation</groupId>
-							<artifactId>jakarta.activation</artifactId>
-						</exclusion>
-						<exclusion>
-							<groupId>jakarta.xml.bind</groupId>
-							<artifactId>jakarta.xml.bind-api</artifactId>
-						</exclusion>
-						<exclusion>
-							<groupId>javax.xml.bind</groupId>
-							<artifactId>jaxb-api</artifactId>
-						</exclusion>
-						<exclusion>
-							<groupId>com.fasterxml.jackson.core</groupId>
-							<artifactId>jackson-databind</artifactId>
-						</exclusion>
-						<exclusion>
-							<groupId>org.glassfish.jaxb</groupId>
-							<artifactId>jaxb-runtime</artifactId>
-						</exclusion>
-						<exclusion>
 							<groupId>org.apache.logging.log4j</groupId>
-							<artifactId>log4j-core</artifactId>
-						</exclusion>
-						<exclusion>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclusion>
-						<exclusion>
-							<groupId>com.h2database</groupId>
-							<artifactId>h2</artifactId>
+							<artifactId>log4j-api</artifactId>
 						</exclusion>
 					</exclusions>
 				</dependency>
 			</dependencies>
 		</profile>
 		<profile>
+			<!--
+			Additional profile
+			not active under Eclipse
+			but possibly having different dependency chains and requires different exclusions
+			-->
 			<id>OTHER</id>
 			<activation>
 				<activeByDefault>false</activeByDefault>
@@ -382,6 +314,9 @@
 			<dependencies>
 				<!--
 				Single CLASSPATH stream
+				This MUST be the only parent dependency inheritance path.
+				Only the effective set of dependencies becomes part of WEB-INF/lib
+				the others remain in the parent classpath, still accessible by Jetty.
 				-->
 				<dependency>
 					<groupId>eliasbalasis</groupId>
@@ -389,67 +324,10 @@
 					<exclusions>
 						<!--
 						CLASS-PATH FIX
+						Exclude here all dependencies that fail to be checked by Jetty at runtime,
+						or exclude them in parent.
+						The dependencies will remain in the classpath but won't be copied to WEB-INF/lib
 						-->
-						<exclusion>
-							<groupId>net.bytebuddy</groupId>
-							<artifactId>byte-buddy</artifactId>
-						</exclusion>
-						<exclusion>
-							<groupId>com.fasterxml</groupId>
-							<artifactId>classmate</artifactId>
-						</exclusion>
-						<exclusion>
-							<groupId>com.sun.istack</groupId>
-							<artifactId>istack-commons-runtime</artifactId>
-						</exclusion>
-						<exclusion>
-							<groupId>com.fasterxml.jackson.core</groupId>
-							<artifactId>jackson-annotations</artifactId>
-						</exclusion>
-						<exclusion>
-							<groupId>com.fasterxml.jackson.core</groupId>
-							<artifactId>jackson-core</artifactId>
-						</exclusion>
-						<exclusion>
-							<groupId>com.fasterxml.jackson.datatype</groupId>
-							<artifactId>jackson-datatype-joda</artifactId>
-						</exclusion>
-						<exclusion>
-							<groupId>com.sun.activation</groupId>
-							<artifactId>jakarta.activation</artifactId>
-						</exclusion>
-						<exclusion>
-							<groupId>jakarta.xml.bind</groupId>
-							<artifactId>jakarta.xml.bind-api</artifactId>
-						</exclusion>
-						<exclusion>
-							<groupId>javax.xml.bind</groupId>
-							<artifactId>jaxb-api</artifactId>
-						</exclusion>
-						<exclusion>
-							<groupId>com.fasterxml.jackson.core</groupId>
-							<artifactId>jackson-databind</artifactId>
-						</exclusion>
-						<exclusion>
-							<groupId>org.glassfish.jaxb</groupId>
-							<artifactId>jaxb-runtime</artifactId>
-						</exclusion>
-						<exclusion>
-							<groupId>org.apache.logging.log4j</groupId>
-							<artifactId>log4j-core</artifactId>
-						</exclusion>
-						<exclusion>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclusion>
-						<exclusion>
-							<groupId>org.apache.logging.log4j</groupId>
-							<artifactId>log4j-api</artifactId>
-						</exclusion>
-						<exclusion>
-							<groupId>org.apache.logging.log4j</groupId>
-							<artifactId>log4j-slf4j-impl</artifactId>
-						</exclusion>
 					</exclusions>
 				</dependency>
 			</dependencies>
