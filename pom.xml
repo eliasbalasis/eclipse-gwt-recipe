@@ -11,11 +11,24 @@
 
 	<properties>
 
+		<maven.install.skip>true</maven.install.skip>
+		<maven.deploy.skip>true</maven.deploy.skip>
+
 		<!--
 		Java compiler levels for all artifacts of this solution
 		-->
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+
+		<!--
+		Maven
+		-->
+		<version.maven-compiler-plugin>3.8.1</version.maven-compiler-plugin>
+		<version.maven-source-plugin>3.2.0</version.maven-source-plugin>
+		<version.maven-resources-plugin>2.6</version.maven-resources-plugin>
+		<version.maven-jar-plugin>3.2.0</version.maven-jar-plugin>
+		<version.maven-war-plugin>3.3.1</version.maven-war-plugin>
+		<version.maven-surefire-plugin>2.22.2</version.maven-surefire-plugin>
 
 		<!--
 		SpringBoot
@@ -28,6 +41,7 @@
 		<version.spring-boot-maven-plugin>${version.spring-boot}</version.spring-boot-maven-plugin>
 
 		<eclipse-gwt-recipe.apps.web.finalName>eclipse-gwt-recipe</eclipse-gwt-recipe.apps.web.finalName>
+
 	</properties>
 
 	<modules>
@@ -144,6 +158,41 @@
 	<build>
 		<pluginManagement>
 			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${version.maven-compiler-plugin}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>${version.maven-source-plugin}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>${version.maven-resources-plugin}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>${version.maven-jar-plugin}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>${version.maven-war-plugin}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${version.maven-surefire-plugin}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-failsafe-plugin</artifactId>
+					<version>${version.maven-surefire-plugin}</version>
+				</plugin>
 				<plugin>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-maven-plugin</artifactId>
