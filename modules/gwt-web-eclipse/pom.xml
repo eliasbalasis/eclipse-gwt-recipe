@@ -144,9 +144,8 @@
 			CLASS-PATH FIX
 			eliminate runtime conflicts originating from GWT's classpath misalignment with Jetty dependencies baseline
 			which started at GWT 2.9.0
-			Enable the exclusions to fix https://github.com/gwtproject/gwt/issues/9693
+			Remove the exclusions to reproduce https://github.com/gwtproject/gwt/issues/9693
 			-->
-			<!--
 			<exclusions>
 				<exclusion>
 					<groupId>org.ow2.asm</groupId>
@@ -157,7 +156,6 @@
 					<artifactId>asm</artifactId>
 				</exclusion>
 			</exclusions>
-			-->
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
