@@ -21,7 +21,7 @@
 		<!--
 		The GWT version for all applications of this solution
 		-->
-		<version.gwt>2.8.2</version.gwt>
+		<version.gwt>2.9.0</version.gwt>
 		<version.gwt-maven-plugin>${version.gwt}</version.gwt-maven-plugin>
 	</properties>
 

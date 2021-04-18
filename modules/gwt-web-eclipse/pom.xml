@@ -140,6 +140,24 @@
 		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
 			<artifactId>jetty-annotations</artifactId>
+			<!--
+			CLASS-PATH FIX
+			eliminate runtime conflicts originating from GWT's classpath misalignment with Jetty dependencies baseline
+			which started at GWT 2.9.0
+			Enable the exclusions to fix https://github.com/gwtproject/gwt/issues/9693
+			-->
+			<!--
+			<exclusions>
+				<exclusion>
+					<groupId>org.ow2.asm</groupId>
+					<artifactId>asm-commons</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.ow2.asm</groupId>
+					<artifactId>asm</artifactId>
+				</exclusion>
+			</exclusions>
+			-->
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
@@ -207,7 +225,7 @@
 		</dependency>
 		<!--
 		CLASS-PATH FIX
-		This is required by Super DevMode and "Google Plugin for Eclipse"
+		This is required by Super DevMode and "GWT Eclipse Plugin"
 		-->
 		<dependency>
 			<groupId>org.aspectj</groupId>
