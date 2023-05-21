@@ -13,6 +13,31 @@
 
 	<packaging>war</packaging>
 
+	<properties>
+		<maven.install.skip>true</maven.install.skip>
+	</properties>
+
+	<dependencies>
+
+		<!--
+		GWT bootstrap
+		-->
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-dev</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!--
+		GWT Eclipse Plugin
+		-->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+		</dependency>
+
+	</dependencies>
+
 	<build>
 
 		<finalName>${eclipse-gwt-recipe.apps.web.finalName}.gwt.eclipse</finalName>
@@ -24,34 +49,38 @@
 			</resource>
 		</resources>
 
+		<outputDirectory>${project.build.directory}/gwt-maven-plugin${file.separator}WEB-INF${file.separator}classes</outputDirectory>
+
 		<plugins>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>gwt-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>compile</goal>
-						</goals>
-						<configuration>
-							<sourceLevel>${properties.gwt.sourceLevel}</sourceLevel>
-							<extraJvmArgs>-Xmx2G</extraJvmArgs>
-						</configuration>
-					</execution>
-				</executions>
+				<goals>
+					<goal>compile</goal>
+				</goals>
+				<configuration>
+					<sourceLevel>${properties.gwt.sourceLevel}</sourceLevel>
+					<extraJvmArgs>-Xmx2G</extraJvmArgs>
+					<webappDirectory>${project.build.directory}/gwt-maven-plugin</webappDirectory>
+					<hostedWebapp>${project.build.directory}/gwt-maven-plugin</hostedWebapp>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
+				<executions>
+					<execution>
+						<?m2e execute onConfiguration,onIncremental?>
+						<id>copy-webapp</id>
+						<goals>
+							<goal>exploded</goal>
+						</goals>
+					</execution>
+				</executions>
 				<configuration>
 					<warName>${eclipse-gwt-recipe.apps.web.finalName}</warName>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
-					<webResources>
-						<webResource>
-							<directory>src/main/webapp</directory>
-							<filtering>true</filtering>
-						</webResource>
-					</webResources>
+					<webappDirectory>${project.build.directory}/gwt-maven-plugin</webappDirectory>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -97,10 +126,12 @@
 						or exclude them in parent.
 						The dependencies will remain in the classpath but won't be copied to WEB-INF/lib
 						-->
+						<!--
 						<exclusion>
 							<groupId>org.apache.logging.log4j</groupId>
 							<artifactId>log4j-api</artifactId>
 						</exclusion>
+						-->
 					</exclusions>
 				</dependency>
 			</dependencies>
@@ -132,10 +163,12 @@
 						or exclude them in parent.
 						The dependencies will remain in the classpath but won't be copied to WEB-INF/lib
 						-->
+						<!--
 						<exclusion>
 							<groupId>org.apache.logging.log4j</groupId>
 							<artifactId>log4j-api</artifactId>
 						</exclusion>
+						-->
 					</exclusions>
 				</dependency>
 			</dependencies>
