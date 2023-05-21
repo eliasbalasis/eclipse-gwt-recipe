@@ -28,11 +28,6 @@
 			<artifactId>eclipse-gwt-recipe.web.core</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>com.google.gwt</groupId>
-			<artifactId>gwt-servlet</artifactId>
-		</dependency>
-
 	</dependencies>
 
 	<build>

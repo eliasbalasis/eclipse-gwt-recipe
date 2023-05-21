@@ -28,6 +28,7 @@
 		<version.maven-jar-plugin>3.2.0</version.maven-jar-plugin>
 		<version.maven-war-plugin>3.3.1</version.maven-war-plugin>
 		<version.maven-surefire-plugin>2.22.2</version.maven-surefire-plugin>
+		<version.maven-install-plugin>2.5.2</version.maven-install-plugin>
 
 		<!--
 		SpringBoot
@@ -163,6 +164,7 @@
 					<version>${version.maven-compiler-plugin}</version>
 				</plugin>
 				<plugin>
+					<?m2e execute onConfiguration,onIncremental?>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-source-plugin</artifactId>
 					<version>${version.maven-source-plugin}</version>
@@ -173,11 +175,13 @@
 					<version>${version.maven-resources-plugin}</version>
 				</plugin>
 				<plugin>
+					<?m2e execute onConfiguration,onIncremental?>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-jar-plugin</artifactId>
 					<version>${version.maven-jar-plugin}</version>
 				</plugin>
 				<plugin>
+					<?m2e ignore?>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-war-plugin</artifactId>
 					<version>${version.maven-war-plugin}</version>
@@ -212,6 +216,12 @@
 							</configuration>
 						</execution>
 					</executions>
+				</plugin>
+				<plugin>
+					<?m2e execute onConfiguration,onIncremental?>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-install-plugin</artifactId>
+					<version>${version.maven-install-plugin}</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>

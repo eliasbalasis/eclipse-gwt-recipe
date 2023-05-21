@@ -25,6 +25,13 @@
 		<version.gwt-maven-plugin>${version.gwt}</version.gwt-maven-plugin>
 	</properties>
 
+	<modules>
+		<module>../gwt-client</module>
+		<module>../gwt-server</module>
+		<module>../gwt-web</module>
+		<module>../gwtproject-2.9.0-JettyLauncher</module>
+	</modules>
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -34,13 +41,12 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+			<dependency>
+				<groupId>eliasbalasis</groupId>
+				<artifactId>eclipse-gwt-recipe.gwtproject-2.9.0-JettyLauncher</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
-	<modules>
-		<module>../gwt-client</module>
-		<module>../gwt-server</module>
-		<module>../gwt-web</module>
-	</modules>
 
 </project>

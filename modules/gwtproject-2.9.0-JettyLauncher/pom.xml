@@ -9,28 +9,16 @@
 		<relativePath>../gwt/pom.xml</relativePath>
 	</parent>
 
-	<artifactId>eclipse-gwt-recipe.gwt.server</artifactId>
+	<artifactId>eclipse-gwt-recipe.gwtproject-2.9.0-JettyLauncher</artifactId>
 
 	<packaging>jar</packaging>
 
 	<dependencies>
-
-		<!--
-		inherit your GWT server-side libraries here
-		-->
-		<!--
-		<dependency>
-			<groupId>eliasbalasis</groupId>
-			<artifactId>shared.gwt.server</artifactId>
-		</dependency>
-		-->
-
 		<dependency>
 			<groupId>com.google.gwt</groupId>
-			<artifactId>gwt-servlet</artifactId>
+			<artifactId>gwt-dev</artifactId>
 			<scope>provided</scope>
 		</dependency>
-
 	</dependencies>
 
 </project>

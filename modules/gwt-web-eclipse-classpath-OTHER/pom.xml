@@ -13,20 +13,120 @@
 
 	<packaging>jar</packaging>
 
+	<properties>
+		<!--
+		CLASSPATH FIX
+		-->
+		<version.asm>9.1</version.asm>
+	</properties>
+
+	<dependencyManagement>
+		<!--
+		CLASSPATH FIX
+		-->
+		<!--
+		<dependencies>
+			<dependency>
+				<groupId>org.ow2.asm</groupId>
+				<artifactId>asm</artifactId>
+				<version>${version.asm}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.ow2.asm</groupId>
+				<artifactId>asm-commons</artifactId>
+				<version>${version.asm}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.ow2.asm</groupId>
+				<artifactId>asm-analysis</artifactId>
+				<version>${version.asm}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.ow2.asm</groupId>
+				<artifactId>asm-tree</artifactId>
+				<version>${version.asm}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.ow2.asm</groupId>
+				<artifactId>asm-util</artifactId>
+				<version>${version.asm}</version>
+			</dependency>
+		</dependencies>
+		-->
+	</dependencyManagement>
+
 	<dependencies>
 
+		<!--
+		CLASSPATH FIX
+		-->
+		<!--
+		<dependency>
+			<groupId>eliasbalasis</groupId>
+			<artifactId>eclipse-gwt-recipe.gwtproject-2.9.0-JettyLauncher</artifactId>
+		</dependency>
+		-->
+		<!--
+		GWT bootstrap
+		-->
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-dev</artifactId>
+			<scope>provided</scope>
+			<exclusions>
+				<!--
+				CLASSPATH FIX
+				-->
+				<!--
+				<exclusion>
+					<groupId>org.ow2.asm</groupId>
+					<artifactId>asm</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.ow2.asm</groupId>
+					<artifactId>asm-commons</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.ow2.asm</groupId>
+					<artifactId>asm-analysis</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.ow2.asm</groupId>
+					<artifactId>asm-tree</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.ow2.asm</groupId>
+					<artifactId>asm-util</artifactId>
+				</exclusion>
+				-->
+			</exclusions>
+		</dependency>
+
+		<!--
+		REMEMBER
+		dependencies at "test" scope or <optional> are not honoured by "GWT Eclipse Plugin"
+		and must be explicitly excluded
+		Also, dependencies unfriendly to GWT must also be excluded
+		-->
 		<dependency>
 			<groupId>eliasbalasis</groupId>
 			<artifactId>eclipse-gwt-recipe.web.gwt.eclipse.classpath</artifactId>
-			<!--
-			REMEMBER
-			dependencies at "test" scope or <optional> are not honoured by "Google Plugin for Eclipse"
-			and must be explicitly excluded
-			Also, dependencies unfriendly to GWT must also be excluded
-			-->
 			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
+
+		<!--
+		GWT Eclipse Plugin
+		-->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<build>
