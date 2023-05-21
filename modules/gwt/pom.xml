@@ -21,7 +21,7 @@
 		<!--
 		The GWT version for all applications of this solution
 		-->
-		<version.gwt>2.9.0</version.gwt>
+		<version.gwt>2.10.0</version.gwt>
 		<version.gwt-maven-plugin>${version.gwt}</version.gwt-maven-plugin>
 	</properties>
 
@@ -29,7 +29,6 @@
 		<module>../gwt-client</module>
 		<module>../gwt-server</module>
 		<module>../gwt-web</module>
-		<module>../gwtproject-2.9.0-JettyLauncher</module>
 	</modules>
 
 	<dependencyManagement>
@@ -41,12 +40,17 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-			<dependency>
-				<groupId>eliasbalasis</groupId>
-				<artifactId>eclipse-gwt-recipe.gwtproject-2.9.0-JettyLauncher</artifactId>
-				<version>${project.version}</version>
-			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>gwt-maven-plugin</artifactId>
+				<version>${version.gwt-maven-plugin}</version>
+			</plugins>
+		</pluginManagement>
+	</build>
 
 </project>

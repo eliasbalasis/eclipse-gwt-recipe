@@ -164,7 +164,6 @@
 					<version>${version.maven-compiler-plugin}</version>
 				</plugin>
 				<plugin>
-					<?m2e execute onConfiguration,onIncremental?>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-source-plugin</artifactId>
 					<version>${version.maven-source-plugin}</version>
@@ -175,7 +174,6 @@
 					<version>${version.maven-resources-plugin}</version>
 				</plugin>
 				<plugin>
-					<?m2e execute onConfiguration,onIncremental?>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-jar-plugin</artifactId>
 					<version>${version.maven-jar-plugin}</version>
@@ -215,12 +213,6 @@
 							</configuration>
 						</execution>
 					</executions>
-				</plugin>
-				<plugin>
-					<?m2e execute onConfiguration,onIncremental?>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-install-plugin</artifactId>
-					<version>${version.maven-install-plugin}</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>

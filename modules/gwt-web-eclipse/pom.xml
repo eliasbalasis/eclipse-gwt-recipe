@@ -13,14 +13,6 @@
 
 	<packaging>war</packaging>
 
-	<dependencies>
-		<dependency>
-			<groupId>com.google.gwt</groupId>
-			<artifactId>gwt-dev</artifactId>
-			<scope>provided</scope>
-		</dependency>
-	</dependencies>
-
 	<build>
 
 		<finalName>${eclipse-gwt-recipe.apps.web.finalName}.gwt.eclipse</finalName>
@@ -36,7 +28,6 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>gwt-maven-plugin</artifactId>
-				<version>${version.gwt-maven-plugin}</version>
 				<executions>
 					<execution>
 						<goals>
@@ -53,7 +44,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
-					<warName>${project.build.finalName}</warName>
+					<warName>${eclipse-gwt-recipe.apps.web.finalName}</warName>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 					<webResources>
 						<webResource>
@@ -111,12 +102,10 @@
 						or exclude them in parent.
 						The dependencies will remain in the classpath but won't be copied to WEB-INF/lib
 						-->
-						<!--
 						<exclusion>
 							<groupId>org.apache.logging.log4j</groupId>
 							<artifactId>log4j-api</artifactId>
 						</exclusion>
-						-->
 					</exclusions>
 				</dependency>
 			</dependencies>
@@ -148,12 +137,10 @@
 						or exclude them in parent.
 						The dependencies will remain in the classpath but won't be copied to WEB-INF/lib
 						-->
-						<!--
 						<exclusion>
 							<groupId>org.apache.logging.log4j</groupId>
 							<artifactId>log4j-api</artifactId>
 						</exclusion>
-						-->
 					</exclusions>
 				</dependency>
 			</dependencies>
