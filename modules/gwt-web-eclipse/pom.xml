@@ -68,6 +68,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
+				<!--
 				<executions>
 					<execution>
 						<?m2e execute onConfiguration,onIncremental?>
@@ -77,6 +78,7 @@
 						</goals>
 					</execution>
 				</executions>
+				-->
 				<configuration>
 					<warName>${eclipse-gwt-recipe.apps.web.finalName}</warName>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
@@ -126,12 +128,10 @@
 						or exclude them in parent.
 						The dependencies will remain in the classpath but won't be copied to WEB-INF/lib
 						-->
-						<!--
 						<exclusion>
 							<groupId>org.apache.logging.log4j</groupId>
 							<artifactId>log4j-api</artifactId>
 						</exclusion>
-						-->
 					</exclusions>
 				</dependency>
 			</dependencies>
@@ -163,12 +163,10 @@
 						or exclude them in parent.
 						The dependencies will remain in the classpath but won't be copied to WEB-INF/lib
 						-->
-						<!--
 						<exclusion>
 							<groupId>org.apache.logging.log4j</groupId>
 							<artifactId>log4j-api</artifactId>
 						</exclusion>
-						-->
 					</exclusions>
 				</dependency>
 			</dependencies>
